@@ -49,6 +49,54 @@ WWW 월드 와이드 웹에서 웹과 크롤링이 합쳐진 단어이다.
 </details>
 <br>
 
+# VSC HTML 기본 템플릿 및 실행 가이드
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+## HTML 생성 및 기본 템플릿 생성
+.html 확장자 파일 생성 후 ! + tab 실행시 아래 기본템플릿 코드가 생성된다.
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+```
+
+## vsc extensions 설치:Live Server
+1. 우측 extensions 메뉴에서 Live Server를 검색한 후 install 한다.  
+  ![alt text](images/image.png)
+
+<br>
+
+2. HTML 파일을 연 뒤 소스 우클릭 + Open with Live Server 선택
+  ![alt text](images/image-1.png)
+
+<br>
+
+3. 우측 하단에 토스트 형태의 notify 알림 출력 확인  
+  ![alt text](images/image-2.png)
+  
+<br>
+
+4. 브라우저 출력 확인
+  ![alt text](images/image-3.png)
+  
+<br>
+
+</details>
+<br>
+
 # Template
 <details>
 <summary>접기/펼치기</summary>
