@@ -97,13 +97,12 @@ WWW 월드 와이드 웹에서 웹과 크롤링이 합쳐진 단어이다.
 </details>
 <br>
 
-# HTML 기초
+# HTML
 <details>
 <summary>접기/펼치기</summary>
 <br>
 
 ## 태그
-
 - `<head></head>`: 문서의 잡다한 부가 정보를 담는다.
 - `<body></body>`: 실제 화면에 표시되는 내용을 담는다.
 - `<h1></h1>`: heading의 약자로 중요도를 나타내는 태그로 보통 제목, 소제목 등에 사용된다.
@@ -156,6 +155,97 @@ WWW 월드 와이드 웹에서 웹과 크롤링이 합쳐진 단어이다.
 
 </details>
 <br>
+
+# 라이브러리 사용법 (requests. beautifulsoup)
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+## requests
+웹 서버에 HTTP 요청을 전송하고 응답을 받을수 있도록 해주는 라이브러리로, 자바의 HttpUrlConnection과 유사한 기능을 제공한다.  
+
+### 설치
+```bash
+pip install request
+```
+
+### 예제코드
+
+- 기본 요청  
+  requests 모듈의 get(url) 함수를 호출하여 웹 서버에 통신을 요청한다.
+  ```py
+  import requests
+  requests.get("https://startcoding.pythonanywhere.com/basic")
+  ```
+
+- 응답 객체와 상태코드  
+  get(url) 함수는 응답 객체를 반환한다.  
+  응답 객체에는 통신에 대한 상태 코드를 담고있다.  
+  가장 자주 출력되는 상태코드는 다음과 같다.  
+  - 200: 응답 정상  
+  - 404: 페이지를 찾을 수 없음
+
+  ```py
+  import requests
+  response = requests.get("https://startcoding.pythonanywhere.com/basic") # 응답 객체 반환
+  print(response) # <Response [200]>
+  print(response.status_code) # 200: 응답 정상 반환 / status_code: 응답의 상태코드
+  ```
+
+- 응답 데이터  
+  response 객체의 text 속성 접근한다.   
+  응답 데이터는 문자열 형태이므로 원하는 부분을 추출하기 어렵다.  
+  beautifulsoup 라이브러리 도움을 받아 추출해야 한다.
+  ```py
+  import requests
+
+  response = requests.get("https://startcoding.pythonanywhere.com/basic")
+  print(response.text) # 응답 데이터
+  ```
+
+## beautifulsoup
+웹 크롤링에서 주로 사용하는 HTML 파싱 및 데이터 추출 기능을 가진 파이썬 라이브러리이다.  
+HTML을 읽고 원하는 요소를 추출하는 용도로 사용한다.  
+자바의 Jsoup과 비슷한 역할을 한다.
+
+### 설치
+```
+pip install bs4
+```
+
+### 예제코드
+
+- 응답 데이터로부터 html 파싱
+  `from bs4 import BeautifulSoup` 문장을 통해 bs4 패키지로 부터 모듈을 불러온 후 `BeautifulSoup(response.text, 'html.parser')` 형태로 호출하여  
+  문자열 형태의 html태그를 객체로 하나식 자른 데이터를 반환받는다.
+  ```py
+  import requests
+  from bs4 import BeautifulSoup # bs4 안에서 beautifulsoup만 가져옴.
+  response = requests.get("https://startcoding.pythonanywhere.com/basic")
+  html = response.text
+  soup = BeautifulSoup(html, 'html.parser') # html.parser를 통해 문자열 형태의 html을 태그 객체로 하나씩 잘라 soup에 할당
+  print(soup) # 변환(태그단위로 개행)된 html 문자열  ```
+  ```
+
+- 파싱된 html 객체로부터 데이터 추출  
+  `select_one(선택자)` 형태로 함수를 호출하여 매개변수로 전달한 선택자에 해당하는 태그에 접근하여 해당 객체를 반환한다.
+  ```py
+  import requests
+  from bs4 import BeautifulSoup # bs4 안에서 beautifulsoup만 가져옴.
+  response = requests.get("https://startcoding.pythonanywhere.com/basic")
+  html = response.text
+  soup = BeautifulSoup(html, 'html.parser') # 파싱된 html 객체
+  brand_name = soup.select_one(".brand-name") # 선택자를 통한 태그 접근
+  print(brand_name) # anchor 태그
+  print(brand_name.text) # 태그의 text 노드에 접근 : 스타트코딩
+  print(brand_name.attrs) # 속성 - 딕셔너리 형태
+  print(brand_name.attrs['href']) # anchor 태그의 href 속성
+  print(brand_name.attrs['target']) # anchor 태그의 target 속성
+  ```
+
+</details>
+<br>
+
 
 # Template
 <details>
