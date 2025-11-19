@@ -97,6 +97,66 @@ WWW 월드 와이드 웹에서 웹과 크롤링이 합쳐진 단어이다.
 </details>
 <br>
 
+# HTML 기초
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+## 태그
+
+- `<head></head>`: 문서의 잡다한 부가 정보를 담는다.
+- `<body></body>`: 실제 화면에 표시되는 내용을 담는다.
+- `<h1></h1>`: heading의 약자로 중요도를 나타내는 태그로 보통 제목, 소제목 등에 사용된다.
+- `<div></div>`: division 의 약자로 구역을 나타내는 태그.  
+    웹페이지 안에는 무수히 많은 구열들이 존재하며, 하나하나의 구역들이 div 태그로 이루어져있다.   
+    크롤링을 할 때 HTML을 분석하다 보면 div 태그를 가장 많이 보게 된다.  
+- `<p></p>`: paragraph의 약자로 문단을 나타내는 태그이다.
+- `<a></a>`: anchor의 약자로 하이퍼링크를 만드는데 사용된다.
+  - href: Hypertext Reference의 약자로 웹페이지, 이미지, 파일 등의 URL주소를 지정하는 속성이다.
+- `<input>`: 입력을 담당하는 태그이다. text 속성과 함께 사용할경우 텍스트를 입력받는 역할을 한다.  
+- `<ul><li>`: Unordered List / ListI tem, 의 약자로 리스트 목록을 만드는 태그이다.
+
+### HTML 예제
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>스타트핏: 운동의 시작</title>
+</head>
+
+<body>
+  <h1>스타트핏: 운동의 시작</h1>
+  <div>
+    <h1>기초 체력업! 무분할 루틴</h1>
+    <p>운동을 처음 시작하는 헬린이 모여</p>
+    <a href="https://www.naver.com">지금 시작하기</a>
+  </div>
+
+  <div>
+    <h1>초보탈출! 3분할 루틴</h1>
+    <p>운동좀 했니? 드루와</p>
+    <a href="https://www.naver.com">지금 시작하기</a>
+  </div>
+
+  <div>
+    <h1>나만의 운동 목표 설정</h1>
+    <input type="text" placeholder="목표입력">
+    <button onclick="alert('렛츠기릿!')">저장하기</button>
+      <li><a href="#">웨이트로 몸짱되기!</a></li>
+      <li><a href="#">유산소로 다이어트!</a></li>
+      <li><a href="#">필라테스로 유연성과 코어잡기!</a></li>
+    </ul>
+  </div>
+
+</body>
+
+</html>
+```
+
+</details>
+<br>
+
 # Template
 <details>
 <summary>접기/펼치기</summary>
