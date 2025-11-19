@@ -75,22 +75,22 @@ WWW 월드 와이드 웹에서 웹과 크롤링이 합쳐진 단어이다.
 
 ## vsc extensions 설치:Live Server
 1. 우측 extensions 메뉴에서 Live Server를 검색한 후 install 한다.  
-  ![alt text](images/image.png)
+  ![alt text](docs/images/image.png)
 
 <br>
 
 2. HTML 파일을 연 뒤 소스 우클릭 + Open with Live Server 선택
-  ![alt text](images/image-1.png)
+  ![alt text](docs/images/image-1.png)
 
 <br>
 
 3. 우측 하단에 토스트 형태의 notify 알림 출력 확인  
-  ![alt text](images/image-2.png)
+  ![alt text](docs/images/image-2.png)
   
 <br>
 
 4. 브라우저 출력 확인
-  ![alt text](images/image-3.png)
+  ![alt text](docs/images/image-3.png)
   
 <br>
 
@@ -243,9 +243,9 @@ pip install bs4
   print(brand_name.attrs['target']) # anchor 태그의 target 속성
   ```
 
+
 </details>
 <br>
-
 
 # Template
 <details>
