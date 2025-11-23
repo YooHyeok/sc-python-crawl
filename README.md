@@ -243,6 +243,44 @@ pip install bs4
   print(brand_name.attrs['target']) # anchor 태그의 target 속성
   ```
 
+## URL 조작
+f-string문법과 반복문의 index를 통해 url의 query string을 조작하여 원하는 페이지에 요청하여 데이터를 가져올 수 있다.
+### 예제코드
+```py
+import requests
+from bs4 import BeautifulSoup
+
+for i in range(1, 5):
+  response = requests.get(f"https://startcoding.pythonanywhere.com/basic?page={i}")
+  html = response.text
+  soup = BeautifulSoup(html, 'html.parser')
+  items = soup.select(".product")
+  for item in items:
+    category = item.select_one(".product-category").text
+    name = item.select_one(".product-name>a").text
+    link = item.select_one(".product-name>a").attrs['href']
+    price = item.select_one(".product-price").text.split('원')[0].replace(',', '') # 가격 끝 공백 제거: 원가 제거(태그 하위에 텍스트노드와 태그가 또 존재할경우)
+    print(category, name, link, price)
+```
+
+input() 함수를 사용하여 검색어를 입력받도록 활용도 가능하다.
+```py
+import requests
+from bs4 import BeautifulSoup
+
+keyword = input('검색어를 입력하세요.')
+for i in range(1, 5):
+  response = requests.get(f"https://startcoding.pythonanywhere.com/basic?page={i}&keyword={keyword}")
+  html = response.text
+  soup = BeautifulSoup(html, 'html.parser')
+  items = soup.select(".product")
+  for item in items:
+    category = item.select_one(".product-category").text
+    name = item.select_one(".product-name>a").text
+    link = item.select_one(".product-name>a").attrs['href']
+    price = item.select_one(".product-price").text.split('원')[0].replace(',', '')
+    print(category, name, link, price)
+```
 
 </details>
 <br>
