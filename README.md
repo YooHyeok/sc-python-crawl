@@ -285,6 +285,81 @@ for i in range(1, 5):
 </details>
 <br>
 
+# 크롤링 데이터 액셀 저장(pandas, openpyxl)
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+pandas와 openpyxl 라이브러리를 사용하여 크롤링한 데이터를 액셀에 저장한다.  
+- pandas:
+- openpyxl
+
+## pandas
+```bash
+pip install pandas
+```
+
+## openpyxl
+
+```bash
+pip install openpyxl
+```
+pandas는 DataFrame이라는 시리즈로 이루어진 데이터 형태를 활용한다.  
+(Series: 통게 - 수학 에서 사용되는 용어로 1차원 수열을 지칭한다.)
+DataFrame은 액셀 표와 같은 형태로 row와 column으로 구성되는 Table 형식의 2차원 데이터 구조로 구성된다.  
+
+대표적인 DataFrame 구조는 딕셔너리, 리스트가 있다.
+
+### 데이터 생성 및 액셀 저장 - 리스트 구조
+```py
+import pandas as pd
+
+data = []
+data.append(['카테고리1', '상품명1', '링크1', '가격1'])
+data.append(['카테고리2', '상품명2', '링크2', '가격2'])
+data.append(['카테고리10', '상품명10', '링크10', '가격10'])
+
+# 데이터 프레임 만들기
+df = pd.DataFrame(data, columns=['카테고리', '상품명', '상세페이지링크', '가격'])
+
+# 액셀 저장
+# df.to_excel('result.xlsx')
+df.to_excel('result.xlsx', index=False) # 인덱스를 생략한다.
+```
+
+### 웹 크롤링 적용
+```py
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+data = []
+
+for i in range(1, 5):
+  response = requests.get(f"https://startcoding.pythonanywhere.com/basic?page={i}")
+  html = response.text
+  soup = BeautifulSoup(html, 'html.parser')
+  items = soup.select(".product")
+  for item in items:
+    category = item.select_one(".product-category").text
+    name = item.select_one(".product-name>a").text
+    link = item.select_one(".product-name>a").attrs['href']
+    # price = item.select_one(".product-price").text.strip().replace(',', '').replace('원', '')
+    price = item.select_one(".product-price").text.split('원')[0].replace(',', '') # 가격 끝 공백 제거: 원가 제거
+    print(category, name, link, price)
+    data.append([category, name, link, price])
+
+# 데이터 프레임 만들기
+df = pd.DataFrame(data, columns=['카테고리', '상품명', '상세페이지링크', '가격'])
+
+# 액셀 저장
+# df.to_excel('result.xlsx')
+df.to_excel('result.xlsx', index=False)
+```
+
+</details>
+<br>
+
 # Template
 <details>
 <summary>접기/펼치기</summary>
